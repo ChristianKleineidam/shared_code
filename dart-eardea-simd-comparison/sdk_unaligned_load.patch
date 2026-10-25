@@ -1,0 +1,21 @@
+--- a/runtime/lib/typed_data_patch.dart
++++ b/runtime/lib/typed_data_patch.dart
+@@ -5316,6 +5316,18 @@
+     return _typedData._getFloat32x4(offsetInBytes + byteOffset);
+   }
+ 
++  // Prototype only: 16 bytes in native endian; byte alignment is unrestricted.
++  Float32x4 loadFloat32x4Unaligned(int byteOffset) {
++    _byteDataByteOffsetCheck(this, byteOffset + 15, length);
++    byteOffset = _byteDataByteOffsetCheck(this, byteOffset, length);
++    return _typedData._getFloat32x4(offsetInBytes + byteOffset);
++  }
++
++  // Requires 0 <= byteOffset <= lengthInBytes - 16 and valid backing storage.
++  Float32x4 unsafeLoadFloat32x4Unaligned(int byteOffset) {
++    return _typedData._getFloat32x4(offsetInBytes + byteOffset);
++  }
++
+   void setFloat32x4(
+     int byteOffset,
+     Float32x4 value, [

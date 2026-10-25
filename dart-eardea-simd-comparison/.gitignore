@@ -1,0 +1,11 @@
+# Keep generated binaries and transient CSVs local; curated analyses are tracked.
+/results.csv
+/window_bench_dart
+/window_bench_c
+/window_bench_c_128
+/window_bench_c_native
+/window_bench_*.exe
+/*.obj
+/*.o
+/__pycache__/
+/controlled-output*/
